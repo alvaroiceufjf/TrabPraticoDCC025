@@ -1,14 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Álvaro Domingues de Freitas     Matrícula: 201876007
  */
 package Perfis;
+
+import java.util.ArrayList;
 
 /**
  *
  * @author tpalvaro
  */
 public class ConjuntoPerfis {
-    
+    private ArrayList <Perfil> perfis;
 }
