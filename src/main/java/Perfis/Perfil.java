@@ -1,14 +1,70 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Álvaro Domingues de Freitas     Matrícula: 201876007
  */
 package Perfis;
+
+import Programa.Serie;
+import java.util.ArrayList;
 
 /**
  *
  * @author tpalvaro
  */
 public class Perfil {
+    private String nome;
+    private String nick;
+    private ArrayList<Serie> SeriesAssistidas;
+    private int numEps;
+    private int numHoras;
+    private String bio;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getNick() {
+        return nick;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public ArrayList<Serie> getSeriesAssistidas() {
+        return SeriesAssistidas;
+    }
+
+    public void setSeriesAssistidas(ArrayList<Serie> SeriesAssistidas) {
+        this.SeriesAssistidas = SeriesAssistidas;
+    }
+
+    public int getNumEps() {
+        return numEps;
+    }
+
+    public void setNumEps(int numEps) {
+        this.numEps = numEps;
+    }
+
+    public int getNumHoras() {
+        return numHoras;
+    }
+
+    public void setNumHoras(int numHoras) {
+        this.numHoras = numHoras;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+    
     
 }
