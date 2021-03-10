@@ -11,4 +11,17 @@ import java.util.ArrayList;
  */
 public class ConjuntoPerfis {
     private ArrayList <Perfil> perfis;
+    
+    
+    public ConjuntoPerfis(){
+        this.perfis = new ArrayList();
+    }
+    
+    public void addPerfil(Perfil p){
+        perfis.add(p);
+    }
+    
+    public Perfil getPerfil(int indice){
+        return perfis.get(indice);
+    }
 }
