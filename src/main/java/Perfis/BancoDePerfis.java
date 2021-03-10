@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 public class BancoDePerfis {
 
-    private ArrayList<Perfil> listaPerfis;
+    private ConjuntoPerfis listaPerfis;
     private Gson gson;
 
     // converte objetos Java para JSON
@@ -28,8 +28,8 @@ public class BancoDePerfis {
      *
      * @param p - Lista de perfis
      */
-    public BancoDePerfis(ArrayList<Perfil> p) {
-        listaPerfis = new ArrayList<>();
+    public BancoDePerfis(ConjuntoPerfis p) {
+        listaPerfis = new ConjuntoPerfis();
         listaPerfis = p;
         gson = new Gson();
 
@@ -56,11 +56,11 @@ public class BancoDePerfis {
      * @throws IOException - precaução para casos de erros de leitura de
      * arquivos
      */
-    public ArrayList pegaArquivo() throws IOException {
+    public ConjuntoPerfis pegaArquivo() throws IOException {
         try {
             BufferedReader br = new BufferedReader(new FileReader("perfis.json"));
 
-            listaPerfis = gson.fromJson(br, ArrayList.class);
+            listaPerfis = gson.fromJson(br, ConjuntoPerfis.class);
         } catch (IOException e) {
             e.printStackTrace();
         }

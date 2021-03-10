@@ -12,13 +12,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
 /**
  *
  * @author tpalvaro
  */
 public class BancoDeSeries {
 
-    private ArrayList<Serie> listaSeries;
+    private ConjuntoSeries listaSeries;
     private Gson gson;
 
     // converte objetos Java para JSON
@@ -28,8 +29,8 @@ public class BancoDeSeries {
      *
      * @param s - Lista de series
      */
-    public BancoDeSeries(ArrayList<Serie> s) {
-        listaSeries = new ArrayList<>();
+    public BancoDeSeries(ConjuntoSeries s) {
+        listaSeries = new ConjuntoSeries();
         listaSeries = s;
         gson = new Gson();
 
@@ -56,11 +57,11 @@ public class BancoDeSeries {
      * @throws IOException - precaução para casos de erros de leitura de
      * arquivos
      */
-    public ArrayList pegaArquivo() throws IOException {
+    public ConjuntoSeries pegaArquivo() throws IOException {
         try {
             BufferedReader br = new BufferedReader(new FileReader("series.json"));
 
-            listaSeries = gson.fromJson(br, ArrayList.class);
+            listaSeries = gson.fromJson(br, ConjuntoSeries.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
