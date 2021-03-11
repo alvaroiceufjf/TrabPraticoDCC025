@@ -17,6 +17,16 @@ public class Perfil {
     private int numEps;
     private int numHoras;
     private String bio;
+    
+    public Perfil(String nome,String nick,String bio){
+        this.nome=nome;
+        this.nick=nick;
+        this.bio=bio;
+        this.SeriesAssistidas= new ArrayList();
+        this.numEps=0;
+        this.numHoras=0;
+        
+    }
 
     public String getNome() {
         return nome;
