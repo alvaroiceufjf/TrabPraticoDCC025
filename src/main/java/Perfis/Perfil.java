@@ -17,14 +17,16 @@ public class Perfil {
     private int numEps;
     private int numHoras;
     private String bio;
+    private String senha;
     
-    public Perfil(String nome,String nick,String bio){
+    public Perfil(String nome,String nick,String bio, String senha){
         this.nome=nome;
         this.nick=nick;
         this.bio=bio;
         this.SeriesAssistidas= new ArrayList();
         this.numEps=0;
         this.numHoras=0;
+        this.senha = senha;
         
     }
 

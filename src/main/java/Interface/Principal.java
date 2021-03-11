@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import Perfis.*;
 import Programa.*;
 import java.io.IOException;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,6 +17,7 @@ public class Principal extends javax.swing.JFrame {
     
     ConjuntoSeries series;
     ConjuntoPerfis perfis;
+    Perfil perfil;
     Serie serie;
     Episodio ep;
     Temporada temp;
@@ -286,9 +288,42 @@ public class Principal extends javax.swing.JFrame {
 
     private void botaoAddPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAddPerfilActionPerformed
         boolean existe = false;
+        String nick = JOptionPane.showInputDialog("Digite o Nickname: ");
+        for (int i = 0; i < (perfis.listaPerfis().size()); i++) {
+            if (nick.equals(perfis.getPerfil(i).getNick())) {
+                JOptionPane.showMessageDialog(null, "Ja existe um perfil com esse Nickname.");
+                existe = true;
+                break;
+            }
+        }
+        if(!existe){
+            if(nick.equals("")){
+                JOptionPane.showMessageDialog(null, "O nickname não pode ser vazio.");
+            }else{
+                String nome = JOptionPane.showInputDialog("Digite o seu nome completo: ");
+                String bio = JOptionPane.showInputDialog("Digite um pouco sobre você: ");
+                String senha = JOptionPane.showInputDialog("Digite uma senha: ");
+                perfil = new Perfil(nome, nick, bio, senha);
+                perfis.addPerfil(perfil);
+                Object[] row = {nome, nick};
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                model.addRow(row);
+                atualizaJson(perfis);
+                JOptionPane.showMessageDialog(null, "O perfil foi criado.");
+            }
         
+        }
     }//GEN-LAST:event_botaoAddPerfilActionPerformed
 
+    private void atualizaJson(ConjuntoPerfis perfis) {
+        BancoDePerfis p = new BancoDePerfis(perfis);
+        try {
+            p.escreveArquivo();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

@@ -10,18 +10,23 @@ import java.util.ArrayList;
  * @author tpalvaro
  */
 public class ConjuntoPerfis {
-    private ArrayList <Perfil> perfis;
+    private ArrayList <Perfil> listaPerfis;
     
     
     public ConjuntoPerfis(){
-        this.perfis = new ArrayList();
+        this.listaPerfis = new ArrayList();
     }
     
     public void addPerfil(Perfil p){
-        perfis.add(p);
+        listaPerfis.add(p);
     }
     
     public Perfil getPerfil(int indice){
-        return perfis.get(indice);
+        return listaPerfis.get(indice);
     }
+    
+    public ArrayList<Perfil> listaPerfis(){
+        return listaPerfis;
+    }
+    
 }
