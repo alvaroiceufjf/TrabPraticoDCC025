@@ -7,6 +7,8 @@ import javax.swing.JOptionPane;
 import Perfis.*;
 import Programa.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,6 +20,7 @@ public class Principal extends javax.swing.JFrame {
     ConjuntoSeries series;
     ConjuntoPerfis perfis;
     Perfil perfil;
+    Perfil perfilAtivo;
     Serie serie;
     Episodio ep;
     Temporada temp;
@@ -32,17 +35,20 @@ public class Principal extends javax.swing.JFrame {
         series = new ConjuntoSeries();
         perfis = new ConjuntoPerfis();
         bancoP = new BancoDePerfis(perfis);
+        bancoS = new BancoDeSeries(series);
 
         try {
             perfis = bancoP.pegaArquivo();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        imprimeTabela(perfis, jTable1);
         try {
             series = bancoS.pegaArquivo();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        imprimeTabelaSeries(series, jTable2);
     }
 
     /**
@@ -74,11 +80,15 @@ public class Principal extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         curioCalorias = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        botaoLogin = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
+        botaoExcluiPerfil = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Aplicação Java");
@@ -134,6 +144,14 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel11.setText("calorias em caminhadas.");
 
+        botaoLogin.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        botaoLogin.setText("ENTRAR");
+        botaoLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoLoginActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -172,12 +190,14 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(curioCalorias, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel11)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(botaoLogin, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(curioCalorias, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel11))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -213,7 +233,9 @@ public class Principal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelBio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
-                .addComponent(botaoAddPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(botaoLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoAddPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -226,8 +248,27 @@ public class Principal extends javax.swing.JFrame {
             new String [] {
                 "Nickname", "Num. Séries"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+        }
+
+        botaoExcluiPerfil.setText("EXCLUIR PERFIL");
+        botaoExcluiPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoExcluiPerfilActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -235,16 +276,68 @@ public class Principal extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 262, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoExcluiPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoExcluiPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 12, Short.MAX_VALUE))
         );
 
         jTabbedPane5.addTab("PERFIS", jPanel4);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "Numero de Episodios", "Numero de Seguidores", "Numero de Estrelas"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Float.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTable2);
+        if (jTable2.getColumnModel().getColumnCount() > 0) {
+            jTable2.getColumnModel().getColumn(0).setResizable(false);
+            jTable2.getColumnModel().getColumn(1).setResizable(false);
+            jTable2.getColumnModel().getColumn(2).setResizable(false);
+            jTable2.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 158, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
+        );
+
+        jTabbedPane5.addTab("SÉRIES", jPanel2);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -258,19 +351,6 @@ public class Principal extends javax.swing.JFrame {
         );
 
         jTabbedPane5.addTab("ADICIONAR SÉRIES", jPanel3);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 715, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 433, Short.MAX_VALUE)
-        );
-
-        jTabbedPane5.addTab("SÉRIES", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -287,6 +367,8 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoAddPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAddPerfilActionPerformed
+        
+        
         boolean existe = false;
         String nick = JOptionPane.showInputDialog("Digite o Nickname: ");
         for (int i = 0; i < (perfis.listaPerfis().size()); i++) {
@@ -305,16 +387,118 @@ public class Principal extends javax.swing.JFrame {
                 String senha = JOptionPane.showInputDialog("Digite uma senha: ");
                 perfil = new Perfil(nome, nick, bio, senha);
                 perfis.addPerfil(perfil);
-                Object[] row = {nome, nick};
-                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-                model.addRow(row);
                 atualizaJson(perfis);
+                atualizaTabela(perfis,jTable1);
                 JOptionPane.showMessageDialog(null, "O perfil foi criado.");
             }
         
-        }
+        } 
     }//GEN-LAST:event_botaoAddPerfilActionPerformed
 
+    private void botaoExcluiPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluiPerfilActionPerformed
+        
+        String nick = JOptionPane.showInputDialog("Digite o Nickname da Conta que deseja remover: ");
+        for(int i = 0;i<perfis.listaPerfis().size();i++){
+            if(nick.equals(perfis.listaPerfis().get(i).getNick())){
+                String senha = JOptionPane.showInputDialog("Digite a senha: ");
+                if(senha.equals(perfis.listaPerfis().get(i).getSenha())){
+                    perfis.listaPerfis().remove(i);
+                    JOptionPane.showMessageDialog(rootPane,"Perfil Excluido");
+                    atualizaJson(perfis);
+                    
+                    atualizaTabela(perfis, jTable1);
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "A senha nao corresponde ao perfil requirido.");
+                }
+            }
+        }
+        
+        
+        
+    }//GEN-LAST:event_botaoExcluiPerfilActionPerformed
+
+    private void botaoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLoginActionPerformed
+        String nick = JOptionPane.showInputDialog("Digite o Nickname da Conta com a qual quer logar: ");
+        for(int i = 0;i<perfis.listaPerfis().size();i++){
+            if(nick.equals(perfis.listaPerfis().get(i).getNick())){
+                String senha = JOptionPane.showInputDialog("Digite a senha: ");
+                if(senha.equals(perfis.listaPerfis().get(i).getSenha())){
+                    perfilAtivo = perfis.listaPerfis().get(i);
+                    JOptionPane.showMessageDialog(rootPane, "Bem-vindo de volta, "+perfilAtivo.getNick());
+                    labelNome.setText(perfilAtivo.getNome());
+                    labelNick.setText(perfilAtivo.getNick());
+                    labelBio.setText(perfilAtivo.getBio());
+                    labelNumHoras.setText(Integer.toString(perfilAtivo.getNumHoras()));
+                    labelNumEps.setText(Integer.toString(perfilAtivo.getNumEps()));
+                    labelNumSeries.setText(Integer.toString(perfilAtivo.getSeriesAssistidas().size()));
+                }else{
+                    JOptionPane.showMessageDialog(rootPane, "A senha nao corresponde ao perfil requirido.");
+                }
+                
+            }
+    }//GEN-LAST:event_botaoLoginActionPerformed
+    }
+
+    public void limpaTabelaSerie(JTable tabela) {
+        DefaultTableModel model = (DefaultTableModel) tabela.getModel();
+        for (; model.getRowCount() > 0; model.removeRow(model.getRowCount() - 1));
+    }
+    
+    public void imprimeTabelaSeries(ConjuntoSeries series, JTable tabela) {
+        DefaultTableModel model = (DefaultTableModel) tabela.getModel();
+        int i = series.listaSeries().size();
+        int j = 0;
+        while (j <= i - 1) {
+            int numS = series.getSerie(j).getSeguidores();
+            String nome = series.getSerie(j).getTitulo();
+            int numE=0;
+            for(int k=0;k<=series.getSerie(k).getTemporadas().size();k++){
+                numE+=series.getSerie(k).getTemporadas().get(k).listaEpisodios().size();
+            }
+            float nota = series.getSerie(j).calculaNota(series.getSerie(j).getNotas());
+            Object[] row = {nome, numE, numS, nota};
+            model.addRow(row);
+            j++;
+        }
+    }
+    
+    public void atualizaTabelaSeries( ConjuntoSeries series,JTable tabela) {
+        limpaTabelaSerie(tabela);
+        imprimeTabelaSeries(series, tabela);
+    }
+    
+    private void atualizaJson(ConjuntoSeries series) {
+        BancoDeSeries s = new BancoDeSeries(series);
+        try {
+            s.escreveArquivo();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public void limpaTabela(JTable tabela) {
+        DefaultTableModel model = (DefaultTableModel) tabela.getModel();
+        for (; model.getRowCount() > 0; model.removeRow(model.getRowCount() - 1));
+    }
+    
+    public void imprimeTabela(ConjuntoPerfis perfis, JTable tabela) {
+        DefaultTableModel model = (DefaultTableModel) tabela.getModel();
+        int i = perfis.listaPerfis().size();
+        int j = 0;
+        while (j <= i - 1) {
+            int numS = perfis.getPerfil(j).getSeriesAssistidas().size();
+            String nick = perfis.getPerfil(j).getNick();
+            Object[] row = {nick, numS};
+            model.addRow(row);
+            j++;
+        }
+    }
+    
+    public void atualizaTabela( ConjuntoPerfis perfis,JTable tabela) {
+        limpaTabela(tabela);
+        imprimeTabela(perfis, tabela);
+    }
+    
     private void atualizaJson(ConjuntoPerfis perfis) {
         BancoDePerfis p = new BancoDePerfis(perfis);
         try {
@@ -364,6 +548,8 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAddPerfil;
+    private javax.swing.JButton botaoExcluiPerfil;
+    private javax.swing.JButton botaoLogin;
     private javax.swing.JLabel curioCalorias;
     private javax.swing.JLabel curioFilme;
     private javax.swing.JLabel curioLivro;
@@ -380,8 +566,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JLabel labelBio;
     private javax.swing.JLabel labelNick;
     private javax.swing.JLabel labelNome;
