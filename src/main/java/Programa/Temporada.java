@@ -10,5 +10,21 @@ import java.util.ArrayList;
  * @author tpalvaro
  */
 public class Temporada {
-    private ArrayList<Episodio> episodios;
+    private ArrayList<Episodio> listaEpisodios;
+    
+    public Temporada(){
+        this.listaEpisodios = new ArrayList();
+    }
+    
+    public void addPerfil(Episodio e){
+        listaEpisodios.add(e);
+    }
+    
+    public Episodio getSerie(int indice){
+        return listaEpisodios.get(indice);
+    }
+    
+    public ArrayList<Episodio> listaEpisodios(){
+        return listaEpisodios;
+    }
 }

@@ -10,5 +10,21 @@ import java.util.ArrayList;
  * @author tpalvaro
  */
 public class ConjuntoSeries {
-    private ArrayList<Serie> series;
+    private ArrayList<Serie> listaSeries;
+    
+    public ConjuntoSeries(){
+        this.listaSeries = new ArrayList();
+    }
+    
+    public void addPerfil(Serie s){
+        listaSeries.add(s);
+    }
+    
+    public Serie getSerie(int indice){
+        return listaSeries.get(indice);
+    }
+    
+    public ArrayList<Serie> listaSeries(){
+        return listaSeries;
+    }
 }
