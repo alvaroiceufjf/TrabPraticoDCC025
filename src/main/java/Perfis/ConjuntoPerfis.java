@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @author tpalvaro
  */
 public class ConjuntoPerfis {
-    private ArrayList <Perfil> listaPerfis;
+    private ArrayList<Perfil> listaPerfis;
     
     
     public ConjuntoPerfis(){

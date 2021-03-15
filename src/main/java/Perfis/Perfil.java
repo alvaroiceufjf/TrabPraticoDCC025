@@ -17,7 +17,7 @@ public class Perfil {
     private int numEps;
     private int numHoras;
     private String bio;
-    private String senha;
+    private final String senha;
     
     public Perfil(String nome,String nick,String bio, String senha){
         this.nome=nome;
@@ -76,6 +76,10 @@ public class Perfil {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    public String getSenha() {
+        return senha;
     }
     
     
