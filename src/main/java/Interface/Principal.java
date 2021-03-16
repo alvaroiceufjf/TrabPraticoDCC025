@@ -18,13 +18,17 @@ import javax.swing.table.DefaultTableModel;
 public class Principal extends javax.swing.JFrame {
     
     ConjuntoSeries series;
-    ConjuntoPerfis perfis;
-    Perfil perfil;
-    Perfil perfilAtivo;
+    ConjuntoUsuarios usuarios;
+    ConjuntoADM adms;
+    Usuario perfilU;
+    Administrador perfilADM;
+    Usuario perfilAtivoU;
+    Administrador perfilAtivoADM;
     Serie serie;
     Episodio ep;
     Temporada temp;
-    BancoDePerfis bancoP;
+    BancoDeUsuarios bancoU;
+    BancoDeADM bancoADM;
     BancoDeSeries bancoS;
 
     /**
@@ -32,17 +36,27 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        perfilAtivoU=null;
+        perfilAtivoADM=null;
         series = new ConjuntoSeries();
-        perfis = new ConjuntoPerfis();
-        bancoP = new BancoDePerfis(perfis);
+        usuarios = new ConjuntoUsuarios();
+        adms = new ConjuntoADM();
+        bancoU = new BancoDeUsuarios(usuarios);
+        bancoADM = new BancoDeADM(adms);
         bancoS = new BancoDeSeries(series);
+        jTable1.setVisible(false);
+        jLabel1.setVisible(false);
 
         try {
-            perfis = bancoP.pegaArquivo();
+            usuarios = bancoU.pegaArquivo();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        imprimeTabela(perfis, jTable1);
+        try {
+            adms = bancoADM.pegaArquivo();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         try {
             series = bancoS.pegaArquivo();
         } catch (IOException ex) {
@@ -81,10 +95,11 @@ public class Principal extends javax.swing.JFrame {
         curioCalorias = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         botaoLogin = new javax.swing.JButton();
+        botaoExcluiPerfil = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        botaoExcluiPerfil = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -152,6 +167,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        botaoExcluiPerfil.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        botaoExcluiPerfil.setText("EXCLUIR PERFIL");
+        botaoExcluiPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoExcluiPerfilActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -166,7 +189,9 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(labelNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelNick, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(botaoAddPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
-                .addGap(168, 168, 168)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoExcluiPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,8 +259,10 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(labelBio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botaoLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botaoAddPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+                    .addComponent(botaoExcluiPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(botaoLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoAddPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -263,12 +290,7 @@ public class Principal extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        botaoExcluiPerfil.setText("EXCLUIR PERFIL");
-        botaoExcluiPerfil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoExcluiPerfilActionPerformed(evt);
-            }
-        });
+        jLabel1.setText("ESTA AREA É RESERVADA AOS ADM's");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -277,16 +299,18 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoExcluiPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoExcluiPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 12, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(346, 346, 346))
         );
 
         jTabbedPane5.addTab("PERFIS", jPanel4);
@@ -328,7 +352,7 @@ public class Principal extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 158, Short.MAX_VALUE))
+                .addGap(0, 165, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,7 +367,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 715, Short.MAX_VALUE)
+            .addGap(0, 722, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,76 +391,167 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoAddPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAddPerfilActionPerformed
-        
-        
+   
         boolean existe = false;
-        String nick = JOptionPane.showInputDialog("Digite o Nickname: ");
-        for (int i = 0; i < (perfis.listaPerfis().size()); i++) {
-            if (nick.equals(perfis.getPerfil(i).getNick())) {
-                JOptionPane.showMessageDialog(null, "Ja existe um perfil com esse Nickname.");
-                existe = true;
-                break;
-            }
-        }
-        if(!existe){
-            if(nick.equals("")){
-                JOptionPane.showMessageDialog(null, "O nickname não pode ser vazio.");
-            }else{
-                String nome = JOptionPane.showInputDialog("Digite o seu nome completo: ");
-                String bio = JOptionPane.showInputDialog("Digite um pouco sobre você: ");
-                String senha = JOptionPane.showInputDialog("Digite uma senha: ");
-                perfil = new Perfil(nome, nick, bio, senha);
-                perfis.addPerfil(perfil);
-                atualizaJson(perfis);
-                atualizaTabela(perfis,jTable1);
-                JOptionPane.showMessageDialog(null, "O perfil foi criado.");
-            }
+            if(confirmaADM()){
+                    String nome = JOptionPane.showInputDialog("Digite o Nome: ");
+                    for (int i = 0; i < (adms.listaADM().size()); i++) {
+                        if (nome.equals(adms.getADM(i).getNome())) {
+                            JOptionPane.showMessageDialog(null, "Ja existe um adm com esse Nome.");
+                            existe = true;
+                            break;
+                        }
+                    }
+                    if(!existe){
+                        if(nome.equals("")){
+                            JOptionPane.showMessageDialog(null, "O nome não pode ser vazio.");
+                        }else{
+                        String senha = JOptionPane.showInputDialog("Digite uma senha: ");
+                        perfilADM = new Administrador(nome, senha);
+                        adms.addADM(perfilADM);
+                        atualizaJsonA(adms);
+                        perfilAtivoU=null;
+                        JOptionPane.showMessageDialog(null, "O perfil foi criado.");
+                        }
+                    }
+                }else{
+                    String nome = JOptionPane.showInputDialog("Digite o Nome: ");
+                    for (int i = 0; i < (usuarios.listaUsuarios().size()); i++) {
+                        if (nome.equals(usuarios.getUsuario(i).getNome())) {
+                            JOptionPane.showMessageDialog(null, "Ja existe um usuario com esse Nome.");
+                            existe = true;
+                            break;
+                        }
+                    }
+                    if(!existe){
+                        if(nome.equals("")){
+                            JOptionPane.showMessageDialog(null, "O nome não pode ser vazio.");
+                        }else{
+                            String nick = JOptionPane.showInputDialog("Digite o seu Nickname: ");
+                            String bio = JOptionPane.showInputDialog("Digite um pouco sobre você: ");
+                            String senha = JOptionPane.showInputDialog("Digite uma senha: ");
+                            perfilU = new Usuario(nome, nick, bio, senha);
+                            usuarios.addUsuario(perfilU);
+                            atualizaJsonU(usuarios);
+                            JOptionPane.showMessageDialog(null, "O perfil foi criado.");
+                        }
         
-        } 
+                    }
+                }        
     }//GEN-LAST:event_botaoAddPerfilActionPerformed
 
-    private void botaoExcluiPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluiPerfilActionPerformed
-        
-        String nick = JOptionPane.showInputDialog("Digite o Nickname da Conta que deseja remover: ");
-        for(int i = 0;i<perfis.listaPerfis().size();i++){
-            if(nick.equals(perfis.listaPerfis().get(i).getNick())){
-                String senha = JOptionPane.showInputDialog("Digite a senha: ");
-                if(senha.equals(perfis.listaPerfis().get(i).getSenha())){
-                    perfis.listaPerfis().remove(i);
-                    JOptionPane.showMessageDialog(rootPane,"Perfil Excluido");
-                    atualizaJson(perfis);
-                    
-                    atualizaTabela(perfis, jTable1);
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "A senha nao corresponde ao perfil requirido.");
-                }
-            }
-        }
-        
-        
-        
-    }//GEN-LAST:event_botaoExcluiPerfilActionPerformed
-
     private void botaoLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoLoginActionPerformed
-        String nick = JOptionPane.showInputDialog("Digite o Nickname da Conta com a qual quer logar: ");
-        for(int i = 0;i<perfis.listaPerfis().size();i++){
-            if(nick.equals(perfis.listaPerfis().get(i).getNick())){
-                String senha = JOptionPane.showInputDialog("Digite a senha: ");
-                if(senha.equals(perfis.listaPerfis().get(i).getSenha())){
-                    perfilAtivo = perfis.listaPerfis().get(i);
-                    JOptionPane.showMessageDialog(rootPane, "Bem-vindo de volta, "+perfilAtivo.getNick());
-                    labelNome.setText(perfilAtivo.getNome());
-                    labelNick.setText(perfilAtivo.getNick());
-                    labelBio.setText(perfilAtivo.getBio());
-                    labelNumHoras.setText(Integer.toString(perfilAtivo.getNumHoras()));
-                    labelNumEps.setText(Integer.toString(perfilAtivo.getNumEps()));
-                    labelNumSeries.setText(Integer.toString(perfilAtivo.getSeriesAssistidas().size()));
-                }else{
-                    JOptionPane.showMessageDialog(rootPane, "A senha nao corresponde ao perfil requirido.");
-                }
+        if(confirmaADM()){
+            String nome = JOptionPane.showInputDialog("Digite o Nome da Conta com a qual quer logar: ");
+            for(int i = 0;i<adms.listaADM().size();i++){
+                Administrador a =adms.listaADM().get(i);
+                if(nome.equals(a.getNome())){
+                    String senha = JOptionPane.showInputDialog("Digite a senha: ");
+                    if(senha.equals(a.getSenha())){
+                        perfilAtivoADM=a;
+                        perfilAtivoU= null;
+                        labelNick.setText(perfilAtivoADM.getNome());
+                        jLabel8.setText("Monitoramento:");
+                        jLabel9.setText("Esse programa possui, atualmente:");
+                        jLabel10.setText("ADM's registrados:");
+                        curioLivro.setText(perfilAtivoADM.qtdPerfis(adms.listaADM()));
+                        jLabel2.setText("");
+                        jLabel3.setText("");
+                        curioFilme.setText("");
+                        jLabel5.setText("");
+                        jLabel6.setText("E ");
+                        curioCalorias.setText(usuarios.getUsuario(0).qtdPerfis(usuarios.listaUsuarios()));
+                        jLabel11.setText("usuários cadastrados.");
+                        JOptionPane.showMessageDialog(rootPane, "Bem-vindo de volta, "+perfilAtivoADM.getNome());
+                        jTable1.setVisible(true);
+                        jLabel1.setVisible(false);
+                        atualizaTabela(usuarios,jTable1);
+                        return;
+                    }
                 
+                }
             }
+            JOptionPane.showMessageDialog(rootPane, "Nao existe um ADM com este nome.");
+            
+        }else{
+            String nome = JOptionPane.showInputDialog("Digite o Nome da Conta com a qual quer logar: ");
+            for(int i = 0;i<usuarios.listaUsuarios().size();i++){
+                Usuario u =usuarios.listaUsuarios().get(i);
+                if(nome.equals(u.getNome())){
+                    String senha = JOptionPane.showInputDialog("Digite a senha: ");
+                    if(senha.equals(u.getSenha())){
+                        perfilAtivoU= u;
+                        perfilAtivoADM=null;
+                        labelNick.setText(perfilAtivoU.getNick());
+                        labelNome.setText(perfilAtivoU.getNome());
+                        labelNumSeries.setText(String.valueOf(perfilAtivoU.listaSerie().size()));
+                        labelNumEps.setText(String.valueOf(perfilAtivoU.getNumEps()));
+                        labelNumHoras.setText(String.valueOf(perfilAtivoU.getNumHoras()));
+                        labelBio.setText(perfilAtivoU.getBio());
+                        jLabel8.setText("Enquanto isso...");
+                        jLabel9.setText("Esse tempo é equivalente a:");
+                        jLabel10.setText("Ler um livro de");
+                        curioLivro.setText(perfilAtivoU.qtdPaginas());
+                        jLabel2.setText("páginas.");
+                        jLabel3.setText("Ver toda a Saga Senhor dos Anéis");
+                        curioFilme.setText(perfilAtivoU.qtdFilme());
+                        jLabel5.setText("vezes.");
+                        jLabel6.setText("Queimar");
+                        curioCalorias.setText(perfilAtivoU.qtdCalorias());
+                        jLabel11.setText("calorias em caminhadas.");
+                        jTable1.setVisible(false);
+                        jLabel1.setVisible(true);
+                        JOptionPane.showMessageDialog(rootPane, "Bem-vindo de volta, "+perfilAtivoU.getNome());
+                        return;
+                    }
+            }
+            }
+            JOptionPane.showMessageDialog(rootPane, "Nao existe um Usuario com este nome.");
+        }
     }//GEN-LAST:event_botaoLoginActionPerformed
+
+    private void botaoExcluiPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExcluiPerfilActionPerformed
+        if(perfilAtivoADM!=null){
+            for(int i =0;i<adms.listaADM().size();i++){
+                if(adms.getADM(i)==perfilAtivoADM){
+                        apagaMenu();
+                        perfilAtivoADM=null;
+                    adms.listaADM().remove(i);
+                    atualizaJsonA(adms);
+                }
+            }
+        }else if(perfilAtivoU!=null){
+            for(int i =0;i<usuarios.listaUsuarios().size();i++){
+                if(usuarios.getUsuario(i)==perfilAtivoU){
+                    apagaMenu();
+                    perfilAtivoU= null;
+                    usuarios.listaUsuarios().remove(i);
+                    atualizaJsonU(usuarios);
+                }
+            }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Não há perfil ativo para ser excluido. Faça o login para prosseguir.");
+        }
+    }//GEN-LAST:event_botaoExcluiPerfilActionPerformed
+    
+    public void apagaMenu(){
+        labelNick.setText("");
+        labelNome.setText("");
+        labelNumSeries.setText("");
+        labelNumEps.setText("");
+        labelNumHoras.setText("");
+        labelBio.setText("");
+        jLabel8.setText("");
+        jLabel9.setText("");
+        jLabel10.setText("");
+        curioLivro.setText("");
+        jLabel2.setText("");
+        jLabel3.setText("");
+        curioFilme.setText("");
+        jLabel5.setText("");
+        jLabel6.setText("");
+        curioCalorias.setText("");
+        jLabel11.setText("");
     }
 
     public void limpaTabelaSerie(JTable tabela) {
@@ -481,28 +596,50 @@ public class Principal extends javax.swing.JFrame {
         for (; model.getRowCount() > 0; model.removeRow(model.getRowCount() - 1));
     }
     
-    public void imprimeTabela(ConjuntoPerfis perfis, JTable tabela) {
+    public void imprimeTabela(ConjuntoUsuarios u, JTable tabela) {
         DefaultTableModel model = (DefaultTableModel) tabela.getModel();
-        int i = perfis.listaPerfis().size();
+        int i = u.listaUsuarios().size();
         int j = 0;
         while (j <= i - 1) {
-            int numS = perfis.getPerfil(j).getSeriesAssistidas().size();
-            String nick = perfis.getPerfil(j).getNick();
-            Object[] row = {nick, numS};
+            int numS = u.getUsuario(j).listaSerie().size();
+            String nome = u.getUsuario(j).getNome();
+            Object[] row = {nome, numS};
             model.addRow(row);
             j++;
         }
     }
     
-    public void atualizaTabela( ConjuntoPerfis perfis,JTable tabela) {
+    public void atualizaTabela( ConjuntoUsuarios perfis,JTable tabela) {
         limpaTabela(tabela);
         imprimeTabela(perfis, tabela);
     }
     
-    private void atualizaJson(ConjuntoPerfis perfis) {
-        BancoDePerfis p = new BancoDePerfis(perfis);
+     private void atualizaJsonU(ConjuntoUsuarios u) {
+        BancoDeUsuarios bu = new BancoDeUsuarios(u);
         try {
-            p.escreveArquivo();
+            bu.escreveArquivo();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+     
+    public boolean confirmaADM(){
+        Object[] options = { "Sim", "Nao" };
+        int conf = JOptionPane.showOptionDialog(rootPane,"Seu Perfil é um Admin?","Tipo de Perfil" , JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        if(conf==0){
+            String id = JOptionPane.showInputDialog("Insira a id de acesso.");
+            if(id.equals("81M0F2UF4OXF369LFY1TBF97P"))
+                return true;
+            
+        }
+        return false;          
+    }
+            
+    private void atualizaJsonA(ConjuntoADM ca) {
+        BancoDeADM a = new BancoDeADM(ca);
+        try {
+            a.escreveArquivo();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -553,6 +690,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel curioCalorias;
     private javax.swing.JLabel curioFilme;
     private javax.swing.JLabel curioLivro;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
