@@ -12,5 +12,5 @@ import java.util.ArrayList;
  * @author tpalvaro
  */
 public interface Nota {
-    float calculaNota(ArrayList<Integer> notas);
+    float calculaNota(ArrayList<Review> r);
 }
