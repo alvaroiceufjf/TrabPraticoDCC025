@@ -11,11 +11,13 @@ package Programa;
  */
 public class Review {
     private String autor;
+    private String opiniao;
     private Integer nota;
 
-    public Review(String autor, Integer nota) {
+    public Review(String autor, String opiniao, Integer nota) {
         this.autor = autor;
         this.nota = nota;
+        this.opiniao = opiniao;
     }
 
     public String getAutor() {
@@ -32,6 +34,14 @@ public class Review {
 
     public void setNota(Integer nota) {
         this.nota = nota;
+    }
+
+    public String getOpiniao() {
+        return opiniao;
+    }
+
+    public void setOpiniao(String opiniao) {
+        this.opiniao = opiniao;
     }
     
     

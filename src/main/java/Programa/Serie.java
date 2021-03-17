@@ -15,7 +15,6 @@ public class Serie implements Nota{
     private ArrayList<Temporada> temporadas;
     private ArrayList<Review> reviews;
     private int seguidores;
-    private float nota;
     
     public Serie(String titulo,String sinopse){
         this.titulo=titulo;
@@ -23,7 +22,6 @@ public class Serie implements Nota{
         this.temporadas = new ArrayList();
         this.reviews = new ArrayList();
         this.seguidores=0;
-        this.nota=0;
     }
 
     public int getSeguidores() {
@@ -53,7 +51,10 @@ public class Serie implements Nota{
     public ArrayList<Temporada> getTemporadas() {
         return temporadas;
     }
-
+    
+    public ArrayList<Review> listaReviews() {
+        return reviews;
+    } 
     
     @Override
     public float calculaNota(ArrayList<Review> r){

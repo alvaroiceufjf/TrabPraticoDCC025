@@ -12,12 +12,14 @@ import java.util.ArrayList;
 public class Episodio implements Nota{
     private String titulo;
     private String sinopse;
+    private Integer duracao;
     private ArrayList<Review> reviews;
     
     
-    public Episodio(String t, String s){
+    public Episodio(String t, String s,Integer d){
         this.titulo = t;
         this.sinopse = s;
+        this.duracao = d;
     }
 
     public String getTitulo() {
@@ -36,6 +38,16 @@ public class Episodio implements Nota{
         this.sinopse = sinopse;
     }
 
+    public Integer getDuracao() {
+        return duracao;
+    }
+
+    public void setDuracao(Integer duracao) {
+        this.duracao = duracao;
+    }
+    
+    
+    
     public ArrayList<Review> listaReviews() {
         return reviews;
     } 

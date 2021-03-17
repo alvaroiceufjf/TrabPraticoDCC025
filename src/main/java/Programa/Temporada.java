@@ -16,7 +16,7 @@ public class Temporada {
         this.listaEpisodios = new ArrayList();
     }
     
-    public void addPerfil(Episodio e){
+    public void addEp(Episodio e){
         listaEpisodios.add(e);
     }
     

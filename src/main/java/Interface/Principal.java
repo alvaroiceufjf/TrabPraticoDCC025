@@ -44,8 +44,17 @@ public class Principal extends javax.swing.JFrame {
         bancoU = new BancoDeUsuarios(usuarios);
         bancoADM = new BancoDeADM(adms);
         bancoS = new BancoDeSeries(series);
-        jTable1.setVisible(false);
+        jLabel4.setVisible(false);
         jLabel1.setVisible(false);
+        botaoAddSerie.setVisible(false);
+        botaoEditaSerie.setVisible(false);
+        botaoSegue.setVisible(false);
+        botaoDropa.setVisible(false);
+        botaoPesquisa.setVisible(false);
+        botaoAssistir.setVisible(false);
+        botaoProx.setVisible(false);
+        
+        
 
         try {
             usuarios = bancoU.pegaArquivo();
@@ -62,7 +71,6 @@ public class Principal extends javax.swing.JFrame {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        imprimeTabelaSeries(series, jTable2);
     }
 
     /**
@@ -103,7 +111,31 @@ public class Principal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        botaoAddSerie = new javax.swing.JButton();
+        botaoEditaSerie = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        areaTitulo = new javax.swing.JLabel();
+        areaNumS = new javax.swing.JLabel();
+        duracaoSeguidores = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        autor1 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        autor2 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
+        autor3 = new javax.swing.JLabel();
+        areaNota = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        areaSinopse = new javax.swing.JTextArea();
+        botaoPesquisa = new javax.swing.JButton();
+        botaoSegue = new javax.swing.JButton();
+        botaoProx = new javax.swing.JButton();
+        botaoAssistir = new javax.swing.JButton();
+        botaoDropa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Aplicação Java");
@@ -257,7 +289,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(labelNumHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelBio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(botaoExcluiPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -306,7 +338,7 @@ public class Principal extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -320,14 +352,14 @@ public class Principal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome", "Numero de Episodios", "Numero de Seguidores", "Numero de Estrelas"
+                "Nome", "Nº Episodios", "Nº Seguidores", "Popularidade"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -346,35 +378,190 @@ public class Principal extends javax.swing.JFrame {
             jTable2.getColumnModel().getColumn(3).setResizable(false);
         }
 
+        jLabel4.setText("ESTA AREA É RESERVADA AOS ADM's");
+
+        botaoAddSerie.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        botaoAddSerie.setText("ADICIONAR SÉRIES");
+        botaoAddSerie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAddSerieActionPerformed(evt);
+            }
+        });
+
+        botaoEditaSerie.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        botaoEditaSerie.setText("EDITAR SÉRIE");
+        botaoEditaSerie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoEditaSerieActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 165, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoAddSerie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoEditaSerie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoAddSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botaoEditaSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane5.addTab("SÉRIES", jPanel2);
+
+        areaTitulo.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+
+        areaNumS.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        duracaoSeguidores.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+
+        jLabel14.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        jLabel14.setText("Reviews mais recentes:");
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(51, 51, 55));
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(3);
+        jScrollPane3.setViewportView(jTextArea1);
+
+        jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jTextArea2.setEditable(false);
+        jTextArea2.setBackground(new java.awt.Color(51, 51, 55));
+        jTextArea2.setColumns(15);
+        jTextArea2.setRows(3);
+        jScrollPane4.setViewportView(jTextArea2);
+
+        jTextArea3.setEditable(false);
+        jTextArea3.setBackground(new java.awt.Color(51, 51, 55));
+        jTextArea3.setColumns(20);
+        jTextArea3.setRows(3);
+        jScrollPane5.setViewportView(jTextArea3);
+
+        autor3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        autor3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        areaNota.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+
+        areaSinopse.setEditable(false);
+        areaSinopse.setBackground(new java.awt.Color(51, 51, 55));
+        areaSinopse.setColumns(20);
+        areaSinopse.setRows(5);
+        jScrollPane6.setViewportView(areaSinopse);
+
+        botaoPesquisa.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        botaoPesquisa.setText("PESQUISAR...");
+        botaoPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoPesquisaActionPerformed(evt);
+            }
+        });
+
+        botaoSegue.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        botaoSegue.setText("SEGUIR");
+
+        botaoProx.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        botaoProx.setText("Proximo Episodio");
+
+        botaoAssistir.setText("Assistir");
+
+        botaoDropa.setText("DEIXAR DE SEGUIR");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 722, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(areaTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(areaNumS, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(duracaoSeguidores, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(areaNota, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(autor3, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                            .addComponent(autor1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(autor2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane6)
+                    .addComponent(botaoPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoProx, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoAssistir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(botaoSegue, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botaoDropa, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 433, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(areaNota, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                            .addComponent(areaTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(duracaoSeguidores, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(areaNumS, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botaoAssistir, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3)
+                    .addComponent(autor1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoPesquisa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4)
+                    .addComponent(autor2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoSegue, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoDropa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane5)
+                    .addComponent(autor3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoProx, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
-        jTabbedPane5.addTab("ADICIONAR SÉRIES", jPanel3);
+        jTabbedPane5.addTab("BUSCAR SÉRIES", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -384,7 +571,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane5, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -463,9 +650,17 @@ public class Principal extends javax.swing.JFrame {
                         curioCalorias.setText(usuarios.getUsuario(0).qtdPerfis(usuarios.listaUsuarios()));
                         jLabel11.setText("usuários cadastrados.");
                         JOptionPane.showMessageDialog(rootPane, "Bem-vindo de volta, "+perfilAtivoADM.getNome());
-                        jTable1.setVisible(true);
                         jLabel1.setVisible(false);
+                        jLabel4.setVisible(false);
+                        botaoAddSerie.setVisible(true);
+                        botaoEditaSerie.setVisible(true);
+                        botaoSegue.setVisible(false);
+                        botaoDropa.setVisible(false);
+                        botaoPesquisa.setVisible(false);
+                        botaoAssistir.setVisible(false);
+                        botaoProx.setVisible(false);
                         atualizaTabela(usuarios,jTable1);
+                        atualizaTabelaSeries(series,jTable2);
                         return;
                     }
                 
@@ -499,8 +694,11 @@ public class Principal extends javax.swing.JFrame {
                         jLabel6.setText("Queimar");
                         curioCalorias.setText(perfilAtivoU.qtdCalorias());
                         jLabel11.setText("calorias em caminhadas.");
-                        jTable1.setVisible(false);
                         jLabel1.setVisible(true);
+                        jLabel4.setVisible(true);
+                        botaoAddSerie.setVisible(false);
+                        botaoEditaSerie.setVisible(false);
+                        botaoPesquisa.setVisible(true);
                         JOptionPane.showMessageDialog(rootPane, "Bem-vindo de volta, "+perfilAtivoU.getNome());
                         return;
                     }
@@ -533,6 +731,103 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Não há perfil ativo para ser excluido. Faça o login para prosseguir.");
         }
     }//GEN-LAST:event_botaoExcluiPerfilActionPerformed
+
+    private void botaoAddSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAddSerieActionPerformed
+        String t = JOptionPane.showInputDialog("Digite o titulo dessa serie:");
+        String s = JOptionPane.showInputDialog("Digite a sinopse:");
+        Integer d;
+        serie = new Serie(t, s);
+        for(int i =0;i<Integer.parseInt(JOptionPane.showInputDialog("Quantas temporadas ha atualmente?"));i++){
+            temp = new Temporada();
+            for(int j =0;j<Integer.parseInt(JOptionPane.showInputDialog("Quantas episodios tem a temporada "+i+"?"));j++){
+                t = JOptionPane.showInputDialog("Digite o nome desse episódio:");
+                s = JOptionPane.showInputDialog("Digite a sinopse:");
+                d = Integer.parseInt(JOptionPane.showInputDialog("Digite a duração:"));
+                ep = new Episodio(t,s,d);
+                temp.addEp(ep);
+            }
+            serie.getTemporadas().add(temp);
+        }
+        series.addSerie(serie);
+        atualizaJson(series);
+        if(perfilAtivoADM!=null)
+            atualizaTabelaSeries(series,jTable2);
+            
+    }//GEN-LAST:event_botaoAddSerieActionPerformed
+
+    private void botaoEditaSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEditaSerieActionPerformed
+        String t = JOptionPane.showInputDialog("Digite o titulo dessa serie:");
+        for(int i =0;i<series.listaSeries().size();i++){
+            if(t.equals(series.listaSeries().get(i).getTitulo())){
+                serie =series.listaSeries().get(i);
+                Object[] options = { "Rem. Serie", "Add Temp"};
+                int conf = JOptionPane.showOptionDialog(rootPane,"Que mudança deseja fazer?","Editar" , JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+                switch(conf) {
+                    case 0:
+                        series.listaSeries().remove(serie);
+                        break;
+                    case 1:
+                    temp = new Temporada();
+                    for(int j =0;j<Integer.parseInt(JOptionPane.showInputDialog("Quantas episodios tem a temporada "+i+"?"));j++){
+                        t = JOptionPane.showInputDialog("Digite o nome desse episódio:");
+                        String s = JOptionPane.showInputDialog("Digite a sinopse:");
+                        Integer d = Integer.parseInt(JOptionPane.showInputDialog("Digite a duração:"));
+                        ep = new Episodio(t,s,d);
+                        temp.addEp(ep);
+                    }
+                    serie.getTemporadas().add(temp);
+                    break;
+}
+                        
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "Não existe uma série com este nome.");
+            }
+        }
+    }//GEN-LAST:event_botaoEditaSerieActionPerformed
+
+    private void botaoPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisaActionPerformed
+        String t =JOptionPane.showInputDialog("Digite o titulo dessa serie:");
+        for(int i =0;i<series.listaSeries().size();i++){
+            if(t.equals(series.listaSeries().get(i).getTitulo())){
+                Serie s = series.listaSeries().get(i);
+                areaTitulo.setText(s.getTitulo());
+                areaSinopse.setText(s.getSinopse());
+                areaNumS.setText(String.valueOf(s.getSeguidores()));
+                duracaoSeguidores.setText("Seguindo.");
+                areaNota.setText(String.valueOf(s.calculaNota(s.listaReviews()))+"/10");
+                if(s.listaReviews().size()<3){
+                    if(s.listaReviews().get(1)!=null){
+                        autor1.setText(s.listaReviews().get(s.listaReviews().size()-1).getAutor());
+                        jTextArea1.setText(s.listaReviews().get(s.listaReviews().size()-1).getOpiniao());
+                        autor2.setText(s.listaReviews().get(s.listaReviews().size()-2).getAutor());
+                        jTextArea2.setText(s.listaReviews().get(s.listaReviews().size()-2).getOpiniao());
+                    }else{
+                        autor1.setText(s.listaReviews().get(0).getAutor());
+                        jTextArea1.setText(s.listaReviews().get(0).getOpiniao());
+                    
+                    }
+                    
+                    
+                }else{
+                    autor1.setText(s.listaReviews().get(s.listaReviews().size()-1).getAutor());
+                    jTextArea1.setText(s.listaReviews().get(s.listaReviews().size()-1).getOpiniao());
+                    autor2.setText(s.listaReviews().get(s.listaReviews().size()-2).getAutor());
+                    jTextArea2.setText(s.listaReviews().get(s.listaReviews().size()-2).getOpiniao());
+                    autor3.setText(s.listaReviews().get(s.listaReviews().size()-3).getAutor());
+                    jTextArea3.setText(s.listaReviews().get(s.listaReviews().size()-3).getOpiniao());
+                }
+            for(int k =0;k<perfilAtivoU.listaSerie().size();k++){
+                if(perfilAtivoU.listaSerie().get(k).getTitulo().equals(s.getTitulo())){
+                    botaoDropa.setVisible(true);
+                    botaoProx.setVisible(true);
+                }else{
+                    botaoSegue.setVisible(true);
+                }
+            }
+            }
+        }
+    }//GEN-LAST:event_botaoPesquisaActionPerformed
     
     public void apagaMenu(){
         labelNick.setText("");
@@ -570,7 +865,7 @@ public class Principal extends javax.swing.JFrame {
             for(int k=0;k<=series.getSerie(k).getTemporadas().size();k++){
                 numE+=series.getSerie(k).getTemporadas().get(k).listaEpisodios().size();
             }
-            float nota = series.getSerie(j).calculaNota(series.getSerie(j).getNotas());
+            float nota = series.getSerie(j).calculaNota(series.getSerie(j).listaReviews());
             Object[] row = {nome, numE, numS, nota};
             model.addRow(row);
             j++;
@@ -609,9 +904,9 @@ public class Principal extends javax.swing.JFrame {
         }
     }
     
-    public void atualizaTabela( ConjuntoUsuarios perfis,JTable tabela) {
+    public void atualizaTabela( ConjuntoUsuarios c,JTable tabela) {
         limpaTabela(tabela);
-        imprimeTabela(perfis, tabela);
+        imprimeTabela(c, tabela);
     }
     
      private void atualizaJsonU(ConjuntoUsuarios u) {
@@ -627,6 +922,7 @@ public class Principal extends javax.swing.JFrame {
         Object[] options = { "Sim", "Nao" };
         int conf = JOptionPane.showOptionDialog(rootPane,"Seu Perfil é um Admin?","Tipo de Perfil" , JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        
         if(conf==0){
             String id = JOptionPane.showInputDialog("Insira a id de acesso.");
             if(id.equals("81M0F2UF4OXF369LFY1TBF97P"))
@@ -684,17 +980,34 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel areaNota;
+    private javax.swing.JLabel areaNumS;
+    private javax.swing.JTextArea areaSinopse;
+    private javax.swing.JLabel areaTitulo;
+    private javax.swing.JLabel autor1;
+    private javax.swing.JLabel autor2;
+    private javax.swing.JLabel autor3;
     private javax.swing.JButton botaoAddPerfil;
+    private javax.swing.JButton botaoAddSerie;
+    private javax.swing.JButton botaoAssistir;
+    private javax.swing.JButton botaoDropa;
+    private javax.swing.JButton botaoEditaSerie;
     private javax.swing.JButton botaoExcluiPerfil;
     private javax.swing.JButton botaoLogin;
+    private javax.swing.JButton botaoPesquisa;
+    private javax.swing.JButton botaoProx;
+    private javax.swing.JButton botaoSegue;
     private javax.swing.JLabel curioCalorias;
     private javax.swing.JLabel curioFilme;
     private javax.swing.JLabel curioLivro;
+    private javax.swing.JLabel duracaoSeguidores;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
@@ -705,9 +1018,16 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JLabel labelBio;
     private javax.swing.JLabel labelNick;
     private javax.swing.JLabel labelNome;

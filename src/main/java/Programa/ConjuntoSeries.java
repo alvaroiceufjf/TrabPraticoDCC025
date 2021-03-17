@@ -16,7 +16,7 @@ public class ConjuntoSeries {
         this.listaSeries = new ArrayList();
     }
     
-    public void addPerfil(Serie s){
+    public void addSerie(Serie s){
         listaSeries.add(s);
     }
     
