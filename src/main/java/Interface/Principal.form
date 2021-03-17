@@ -54,13 +54,26 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="labelNumEps" max="32767" attributes="0"/>
-                          <Component id="labelNumHoras" alignment="1" max="32767" attributes="0"/>
                           <Component id="labelBio" alignment="0" max="32767" attributes="0"/>
-                          <Component id="labelNumSeries" alignment="1" max="32767" attributes="0"/>
                           <Component id="labelNome" alignment="1" max="32767" attributes="0"/>
                           <Component id="labelNick" alignment="0" max="32767" attributes="0"/>
                           <Component id="botaoAddPerfil" alignment="0" pref="250" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="labelNumEps" pref="50" max="32767" attributes="0"/>
+                                  <Component id="labelNumHoras" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel12" max="32767" attributes="0"/>
+                                  <Component id="jLabel13" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="labelNumSeries" min="-2" pref="50" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel7" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="botaoExcluiPerfil" min="-2" pref="152" max="-2" attributes="0"/>
@@ -135,25 +148,28 @@
                           <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
                           <Component id="curioFilme" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jLabel7" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="labelNumEps" pref="25" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jLabel12" max="32767" attributes="0"/>
+                          <Component id="labelNumEps" alignment="0" pref="25" max="32767" attributes="0"/>
                           <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
                           <Component id="jLabel11" alignment="0" max="32767" attributes="0"/>
                           <Component id="curioCalorias" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="labelNumHoras" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel13" max="32767" attributes="0"/>
+                          <Component id="labelNumHoras" pref="25" max="32767" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelBio" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace pref="86" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="botaoExcluiPerfil" pref="50" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="botaoLogin" max="32767" attributes="0"/>
-                              <Component id="botaoAddPerfil" pref="50" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="botaoLogin" max="32767" attributes="0"/>
+                          <Component id="botaoAddPerfil" pref="50" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -302,6 +318,21 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoExcluiPerfilActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel7">
+              <Properties>
+                <Property name="text" type="java.lang.String" value=" "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel12">
+              <Properties>
+                <Property name="text" type="java.lang.String" value=" "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel13">
+              <Properties>
+                <Property name="text" type="java.lang.String" value=" "/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -652,7 +683,7 @@
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="37" green="33" red="33" type="rgb"/>
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
                     </Property>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="3"/>
@@ -674,7 +705,7 @@
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="37" green="33" red="33" type="rgb"/>
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
                     </Property>
                     <Property name="columns" type="int" value="15"/>
                     <Property name="rows" type="int" value="3"/>
@@ -695,7 +726,7 @@
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="37" green="33" red="33" type="rgb"/>
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
                     </Property>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="3"/>
@@ -727,7 +758,7 @@
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="37" green="33" red="33" type="rgb"/>
+                      <Color blue="cc" green="cc" red="cc" type="rgb"/>
                     </Property>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
@@ -753,6 +784,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="SEGUIR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoSegueActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="botaoProx">
               <Properties>
@@ -761,16 +795,25 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Proximo Episodio"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoProxActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="botaoAssistir">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Assistir"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAssistirActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="botaoDropa">
               <Properties>
                 <Property name="text" type="java.lang.String" value="DEIXAR DE SEGUIR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoDropaActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

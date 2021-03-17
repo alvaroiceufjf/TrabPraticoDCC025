@@ -14,12 +14,15 @@ public class Episodio implements Nota{
     private String sinopse;
     private Integer duracao;
     private ArrayList<Review> reviews;
+    private boolean assistido;
     
     
     public Episodio(String t, String s,Integer d){
         this.titulo = t;
         this.sinopse = s;
         this.duracao = d;
+        this.reviews = new ArrayList();
+        this.assistido = false;
     }
 
     public String getTitulo() {
@@ -44,6 +47,14 @@ public class Episodio implements Nota{
 
     public void setDuracao(Integer duracao) {
         this.duracao = duracao;
+    }
+
+    public boolean isAssistido() {
+        return assistido;
+    }
+
+    public void setAssistido(boolean assistido) {
+        this.assistido = assistido;
     }
     
     

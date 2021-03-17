@@ -24,6 +24,7 @@ public class Principal extends javax.swing.JFrame {
     Administrador perfilADM;
     Usuario perfilAtivoU;
     Administrador perfilAtivoADM;
+    Serie s;
     Serie serie;
     Episodio ep;
     Temporada temp;
@@ -104,6 +105,9 @@ public class Principal extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         botaoLogin = new javax.swing.JButton();
         botaoExcluiPerfil = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -207,6 +211,12 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setText(" ");
+
+        jLabel12.setText(" ");
+
+        jLabel13.setText(" ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -214,13 +224,22 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelNumEps, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelNumHoras, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelBio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelNumSeries, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelNick, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botaoAddPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
+                    .addComponent(botaoAddPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(labelNumEps, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                            .addComponent(labelNumHoras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelNumSeries, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botaoExcluiPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -278,23 +297,26 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(labelNumSeries, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(curioFilme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(curioFilme, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelNumEps, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(curioCalorias, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(labelNumEps, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(curioCalorias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelNumHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelNumHoras, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelBio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(botaoExcluiPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(botaoLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoAddPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)))
+                    .addComponent(botaoLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoAddPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -436,7 +458,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel14.setText("Reviews mais recentes:");
 
         jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(51, 51, 55));
+        jTextArea1.setBackground(new java.awt.Color(204, 204, 204));
         jTextArea1.setColumns(20);
         jTextArea1.setRows(3);
         jScrollPane3.setViewportView(jTextArea1);
@@ -444,13 +466,13 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jTextArea2.setEditable(false);
-        jTextArea2.setBackground(new java.awt.Color(51, 51, 55));
+        jTextArea2.setBackground(new java.awt.Color(204, 204, 204));
         jTextArea2.setColumns(15);
         jTextArea2.setRows(3);
         jScrollPane4.setViewportView(jTextArea2);
 
         jTextArea3.setEditable(false);
-        jTextArea3.setBackground(new java.awt.Color(51, 51, 55));
+        jTextArea3.setBackground(new java.awt.Color(204, 204, 204));
         jTextArea3.setColumns(20);
         jTextArea3.setRows(3);
         jScrollPane5.setViewportView(jTextArea3);
@@ -461,7 +483,7 @@ public class Principal extends javax.swing.JFrame {
         areaNota.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
 
         areaSinopse.setEditable(false);
-        areaSinopse.setBackground(new java.awt.Color(51, 51, 55));
+        areaSinopse.setBackground(new java.awt.Color(204, 204, 204));
         areaSinopse.setColumns(20);
         areaSinopse.setRows(5);
         jScrollPane6.setViewportView(areaSinopse);
@@ -476,13 +498,33 @@ public class Principal extends javax.swing.JFrame {
 
         botaoSegue.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         botaoSegue.setText("SEGUIR");
+        botaoSegue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoSegueActionPerformed(evt);
+            }
+        });
 
         botaoProx.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         botaoProx.setText("Proximo Episodio");
+        botaoProx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoProxActionPerformed(evt);
+            }
+        });
 
         botaoAssistir.setText("Assistir");
+        botaoAssistir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAssistirActionPerformed(evt);
+            }
+        });
 
         botaoDropa.setText("DEIXAR DE SEGUIR");
+        botaoDropa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoDropaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -682,6 +724,9 @@ public class Principal extends javax.swing.JFrame {
                         labelNumSeries.setText(String.valueOf(perfilAtivoU.listaSerie().size()));
                         labelNumEps.setText(String.valueOf(perfilAtivoU.getNumEps()));
                         labelNumHoras.setText(String.valueOf(perfilAtivoU.getNumHoras()));
+                        jLabel7.setText("Series Seguidas");
+                        jLabel12.setText("Episodios Assistidos");
+                        jLabel13.setText("Minutos Assistidos");
                         labelBio.setText(perfilAtivoU.getBio());
                         jLabel8.setText("Enquanto isso...");
                         jLabel9.setText("Esse tempo é equivalente a:");
@@ -737,10 +782,12 @@ public class Principal extends javax.swing.JFrame {
         String s = JOptionPane.showInputDialog("Digite a sinopse:");
         Integer d;
         serie = new Serie(t, s);
-        for(int i =0;i<Integer.parseInt(JOptionPane.showInputDialog("Quantas temporadas ha atualmente?"));i++){
+        Integer tAux = Integer.parseInt(JOptionPane.showInputDialog("Quantas temporadas ha atualmente?"));
+        for(int i =0;i<tAux;i++){
             temp = new Temporada();
-            for(int j =0;j<Integer.parseInt(JOptionPane.showInputDialog("Quantas episodios tem a temporada "+i+"?"));j++){
-                t = JOptionPane.showInputDialog("Digite o nome desse episódio:");
+            Integer nEps = Integer.parseInt(JOptionPane.showInputDialog("Quantas episodios tem a temporada "+(i+1)+"?"));
+            for(int j =0;j<nEps;j++){
+                t = JOptionPane.showInputDialog("Digite o nome do episódio:"+(j+1));
                 s = JOptionPane.showInputDialog("Digite a sinopse:");
                 d = Integer.parseInt(JOptionPane.showInputDialog("Digite a duração:"));
                 ep = new Episodio(t,s,d);
@@ -790,44 +837,196 @@ public class Principal extends javax.swing.JFrame {
         String t =JOptionPane.showInputDialog("Digite o titulo dessa serie:");
         for(int i =0;i<series.listaSeries().size();i++){
             if(t.equals(series.listaSeries().get(i).getTitulo())){
-                Serie s = series.listaSeries().get(i);
+                s = series.listaSeries().get(i);
                 areaTitulo.setText(s.getTitulo());
                 areaSinopse.setText(s.getSinopse());
                 areaNumS.setText(String.valueOf(s.getSeguidores()));
-                duracaoSeguidores.setText("Seguindo.");
-                areaNota.setText(String.valueOf(s.calculaNota(s.listaReviews()))+"/10");
-                if(s.listaReviews().size()<3){
-                    if(s.listaReviews().get(1)!=null){
-                        autor1.setText(s.listaReviews().get(s.listaReviews().size()-1).getAutor());
-                        jTextArea1.setText(s.listaReviews().get(s.listaReviews().size()-1).getOpiniao());
-                        autor2.setText(s.listaReviews().get(s.listaReviews().size()-2).getAutor());
-                        jTextArea2.setText(s.listaReviews().get(s.listaReviews().size()-2).getOpiniao());
-                    }else{
-                        autor1.setText(s.listaReviews().get(0).getAutor());
-                        jTextArea1.setText(s.listaReviews().get(0).getOpiniao());
-                    
+                duracaoSeguidores.setText("Seguidores.");
+                areaNota.setText(String.valueOf(s.calculaNota(s.listaReviews()))+"/5");
+                switch(s.listaReviews().size()){
+                    case 0:{
+                    break;
                     }
-                    
-                    
-                }else{
+                    case 1:{
+                    autor1.setText(s.listaReviews().get(0).getAutor());
+                    jTextArea1.setText(s.listaReviews().get(0).getOpiniao());
+                    break;
+                    }
+                    case 2:{
+                    autor1.setText(s.listaReviews().get(1).getAutor());
+                    jTextArea1.setText(s.listaReviews().get(1).getOpiniao());
+                    autor2.setText(s.listaReviews().get(0).getAutor());
+                    jTextArea2.setText(s.listaReviews().get(0).getOpiniao());
+                    break;
+                    }
+                    default:{
                     autor1.setText(s.listaReviews().get(s.listaReviews().size()-1).getAutor());
                     jTextArea1.setText(s.listaReviews().get(s.listaReviews().size()-1).getOpiniao());
                     autor2.setText(s.listaReviews().get(s.listaReviews().size()-2).getAutor());
                     jTextArea2.setText(s.listaReviews().get(s.listaReviews().size()-2).getOpiniao());
                     autor3.setText(s.listaReviews().get(s.listaReviews().size()-3).getAutor());
                     jTextArea3.setText(s.listaReviews().get(s.listaReviews().size()-3).getOpiniao());
+                    break;
+                    }
                 }
-            for(int k =0;k<perfilAtivoU.listaSerie().size();k++){
-                if(perfilAtivoU.listaSerie().get(k).getTitulo().equals(s.getTitulo())){
-                    botaoDropa.setVisible(true);
-                    botaoProx.setVisible(true);
-                }else{
-                    botaoSegue.setVisible(true);
-                }
-            }
+                
+
+                botaoDropa.setVisible(true);
+                botaoProx.setVisible(true);
+                botaoSegue.setVisible(true);
+                    
+                
             }
         }
     }//GEN-LAST:event_botaoPesquisaActionPerformed
+
+    private void botaoSegueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSegueActionPerformed
+        for(int i=0;i<perfilAtivoU.listaSerie().size();i++){
+            if(perfilAtivoU.listaSerie().get(i).getTitulo().equals(areaTitulo.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Voce ja segue essa serie");
+                return;
+            }
+        }
+        for(int i=0;i<usuarios.listaUsuarios().size();i++){
+            if(usuarios.listaUsuarios().get(i).getNome().equals(perfilAtivoU.getNome())){
+                usuarios.listaUsuarios().get(i).listaSerie().add(s);
+                for(int j=0;j<series.listaSeries().size();j++){
+                    if(series.listaSeries().get(j).getTitulo().equals(s.getTitulo())){
+                        series.listaSeries().get(j).setSeguidores(series.listaSeries().get(j).getSeguidores()+1);
+                        atualizaJson(series);
+                    }
+                }
+                atualizaJsonU(usuarios);
+                labelNumSeries.setText(String.valueOf(Integer.parseInt(labelNumSeries.getText())+1));
+                areaNumS.setText(String.valueOf(Integer.parseInt(areaNumS.getText())+1));
+                return;
+            }
+            
+        }
+    }//GEN-LAST:event_botaoSegueActionPerformed
+
+    private void botaoDropaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDropaActionPerformed
+        for(int i=0;i<usuarios.listaUsuarios().size();i++){
+            if(usuarios.listaUsuarios().get(i).getNome().equals(perfilAtivoU.getNome())){
+                for(int j=0;j<usuarios.listaUsuarios().get(i).listaSerie().size();j++){
+                    if(usuarios.listaUsuarios().get(i).listaSerie().get(j).getTitulo().equals(areaTitulo.getText())){
+                        usuarios.listaUsuarios().get(i).listaSerie().remove(j);
+                        atualizaJsonU(usuarios);
+                        for(int k=0;k<series.listaSeries().size();k++){
+                            if(series.listaSeries().get(k).getTitulo().equals(s.getTitulo())){                                
+                                series.listaSeries().get(k).setSeguidores(+1);
+                                atualizaJson(series);
+                            }
+                        }
+                        labelNumSeries.setText(String.valueOf(Integer.parseInt(labelNumSeries.getText())-1));
+                        areaNumS.setText(String.valueOf(Integer.parseInt(areaNumS.getText())-1));
+                        JOptionPane.showMessageDialog(rootPane, "Voce deixou de seguir essa serie.");
+                        return;
+                    }else{
+                        JOptionPane.showMessageDialog(rootPane, "Voce nao segue essa serie");
+                        return;
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_botaoDropaActionPerformed
+
+    private void botaoProxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoProxActionPerformed
+        for(int i=0;i<usuarios.listaUsuarios().size();i++){
+            if(usuarios.listaUsuarios().get(i).getNome().equals(perfilAtivoU.getNome())){
+                for(int j=0;j<usuarios.listaUsuarios().get(i).listaSerie().size();j++){
+                    if(usuarios.listaUsuarios().get(i).listaSerie().get(j).getTitulo().equals(areaTitulo.getText())){
+                        for(int k=0;k<usuarios.listaUsuarios().get(i).listaSerie().get(j).getTemporadas().size();k++){
+                            for(int e=0;e<usuarios.listaUsuarios().get(i).listaSerie().get(j).getTemporadas().get(k).listaEpisodios().size();e++){
+                                if(usuarios.listaUsuarios().get(i).listaSerie().get(j).getTemporadas().get(k).listaEpisodios().get(e).isAssistido()==false){
+                                    ep  = usuarios.listaUsuarios().get(i).listaSerie().get(j).getTemporadas().get(k).listaEpisodios().get(e);
+                                    areaTitulo.setText(ep.getTitulo());
+                                    areaSinopse.setText(ep.getSinopse());
+                                    areaNumS.setText(String.valueOf(ep.getDuracao()));
+                                    duracaoSeguidores.setText("min.");
+                                    areaNota.setText(String.valueOf(ep.calculaNota(ep.listaReviews()))+"/10");
+                                    switch(ep.listaReviews().size()){
+                                        case 0:
+                                            break;
+                                        
+                                        case 1:
+                                            autor1.setText(ep.listaReviews().get(0).getAutor());
+                                            jTextArea1.setText(ep.listaReviews().get(0).getOpiniao());
+                                            break;
+                                        
+                                        case 2:
+                                            autor1.setText(ep.listaReviews().get(1).getAutor());
+                                            jTextArea1.setText(ep.listaReviews().get(1).getOpiniao());
+                                            autor2.setText(ep.listaReviews().get(0).getAutor());
+                                            jTextArea2.setText(ep.listaReviews().get(0).getOpiniao());
+                                            break;
+                                        
+                                        default:
+                                            autor1.setText(ep.listaReviews().get(ep.listaReviews().size()-1).getAutor());
+                                            jTextArea1.setText(ep.listaReviews().get(ep.listaReviews().size()-1).getOpiniao());
+                                            autor2.setText(ep.listaReviews().get(ep.listaReviews().size()-2).getAutor());
+                                            jTextArea2.setText(ep.listaReviews().get(ep.listaReviews().size()-2).getOpiniao());
+                                            autor3.setText(ep.listaReviews().get(ep.listaReviews().size()-3).getAutor());
+                                            jTextArea3.setText(ep.listaReviews().get(ep.listaReviews().size()-3).getOpiniao());
+                                            break;
+                                        
+                                    }
+                                    botaoDropa.setVisible(false);
+                                    botaoSegue.setVisible(false);
+                                    botaoAssistir.setVisible(true);
+                                    return;
+                                }
+                            }
+                        }
+                    
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_botaoProxActionPerformed
+
+    private void botaoAssistirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAssistirActionPerformed
+        for(int i=0;i<usuarios.listaUsuarios().size();i++){
+            if(usuarios.listaUsuarios().get(i).getNome().equals(perfilAtivoU.getNome())){
+                for(int j=0;j<usuarios.listaUsuarios().get(i).listaSerie().size();j++){
+                    if(usuarios.listaUsuarios().get(i).listaSerie().get(j).getTitulo().equals(s.getTitulo())){
+                        for(int k=0;k<usuarios.listaUsuarios().get(i).listaSerie().get(j).getTemporadas().size();k++){
+                            for(int e=0;e<usuarios.listaUsuarios().get(i).listaSerie().get(j).getTemporadas().get(k).listaEpisodios().size();e++){
+                                if(usuarios.listaUsuarios().get(i).listaSerie().get(j).getTemporadas().get(k).listaEpisodios().get(e).isAssistido()==false){
+                                    usuarios.listaUsuarios().get(i).listaSerie().get(j).getTemporadas().get(k).listaEpisodios().get(e).setAssistido(true);
+                                    usuarios.listaUsuarios().get(i).setNumEps(usuarios.listaUsuarios().get(i).getNumEps()+1);
+                                    usuarios.listaUsuarios().get(i).setNumHoras(usuarios.listaUsuarios().get(i).getNumHoras()+(ep.getDuracao()));
+                                    atualizaJsonU(usuarios);
+                                    labelNumHoras.setText(String.valueOf(usuarios.listaUsuarios().get(i).getNumHoras()));
+                                    labelNumEps.setText(String.valueOf(usuarios.listaUsuarios().get(i).getNumEps()));
+                                    curioLivro.setText(usuarios.listaUsuarios().get(i).qtdPaginas());
+                                    curioFilme.setText(usuarios.listaUsuarios().get(i).qtdFilme());
+                                    curioCalorias.setText(usuarios.listaUsuarios().get(i).qtdCalorias());
+                                    String op = JOptionPane.showInputDialog("O que achou do episodio?:");
+                                    int nota=-1;
+                                    while(nota<0||nota>10){
+                                        nota = Integer.parseInt(JOptionPane.showInputDialog("De uma nota(0 a 10):"));
+                                        if(nota<0||nota>10)
+                                            JOptionPane.showMessageDialog(rootPane, "Nota Invalida");
+                                    }
+                                    Review r = new Review(usuarios.listaUsuarios().get(i).getNick(),op,nota);
+                                    for(int s=0;s<series.listaSeries().size();s++){
+                                        if(series.listaSeries().get(s).getTitulo().equals(usuarios.listaUsuarios().get(i).listaSerie().get(j).getTitulo())){
+                                            series.listaSeries().get(s).getTemporadas().get(k).listaEpisodios().get(e).listaReviews().add(r);
+                                            atualizaJson(series);
+                                        }
+                                    }
+                                    botaoAssistir.setVisible(false);
+                                    return;
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_botaoAssistirActionPerformed
     
     public void apagaMenu(){
         labelNick.setText("");
@@ -847,6 +1046,9 @@ public class Principal extends javax.swing.JFrame {
         jLabel6.setText("");
         curioCalorias.setText("");
         jLabel11.setText("");
+        jLabel7.setText("");
+        jLabel12.setText("");
+        jLabel13.setText("");
     }
 
     public void limpaTabelaSerie(JTable tabela) {
@@ -862,7 +1064,7 @@ public class Principal extends javax.swing.JFrame {
             int numS = series.getSerie(j).getSeguidores();
             String nome = series.getSerie(j).getTitulo();
             int numE=0;
-            for(int k=0;k<=series.getSerie(k).getTemporadas().size();k++){
+            for(int k=0;k<series.listaSeries().get(j).getTemporadas().size();k++){
                 numE+=series.getSerie(k).getTemporadas().get(k).listaEpisodios().size();
             }
             float nota = series.getSerie(j).calculaNota(series.getSerie(j).listaReviews());
@@ -1004,12 +1206,15 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

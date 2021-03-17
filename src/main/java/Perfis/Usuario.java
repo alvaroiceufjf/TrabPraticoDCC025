@@ -68,19 +68,19 @@ public class Usuario extends Perfil{
     
     public String qtdPaginas(){
         Integer total;
-        total = numHoras*60;
+        total = numHoras;
         return total.toString();
     }
     
     public String qtdFilme(){
         Integer total;
-        total = numHoras/12;
+        total = numHoras/720;
         return total.toString();
     }
     
     public String qtdCalorias(){
         Integer total;
-        total = numHoras*243;
+        total = numHoras*4;
         return total.toString();
     }
     
